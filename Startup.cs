@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DieupeGames.Models;
 using DieupeGames.Models.LiteDb;
+using Microsoft.AspNetCore.Routing;
 
 namespace DieupeGames
 {
@@ -29,6 +30,8 @@ namespace DieupeGames
             services.AddSingleton<ILiteDbContext, LiteDbContext>();
             services.AddTransient<ILiteDbWordBoxService, LiteDbWordBoxService>();
 
+            //services.AddRouting(options => options.LowercaseUrls = true);
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
             services.AddRazorPages();
             services.AddControllers();
         }
