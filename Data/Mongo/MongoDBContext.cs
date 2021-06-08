@@ -18,7 +18,7 @@ namespace learnCore
 
        // public PlayerDataRepository Players { get; set; }
         //LeaderBoardRepository LeaderBoard { get; set; }
-        public PromoCodeRepository PublicMazes { get; set; }
+        public PromoCodeRepository PromoCode { get; set; }
         public ServerCounterRepository Counters { get; set; }
 
 
@@ -57,7 +57,7 @@ namespace learnCore
             //CreateCreatedMazeIndex();
 
             //Players = new PlayerDataRepository(playerCollection);
-            PublicMazes = new PromoCodeRepository(promoCodeCollection);
+            PromoCode = new PromoCodeRepository(promoCodeCollection);
             //LeaderBoard = new LeaderBoardRepository(leaderBoardCollection);
             Counters = new ServerCounterRepository(serverCounterCollection);
         }
@@ -69,6 +69,7 @@ namespace learnCore
             var builder = Builders<PromoCode>.IndexKeys;
 
             indexModels.Add(new CreateIndexModel<PromoCode>(builder.Ascending(p => p.Id), indexOptions));
+            indexModels.Add(new CreateIndexModel<PromoCode>(builder.Ascending(p => p.Code), indexOptions));
 
             promoCodeCollection.Indexes.CreateMany(indexModels);
         }

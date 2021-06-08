@@ -24,10 +24,10 @@ namespace DieupeGames.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public string Get([FromRoute] string id)
-        {
-            return id;
-        }
+        //[HttpGet("{id}")]
+        //public string Get([FromRoute] string id)
+        //{
+        //    return id;
+        //}
     }
 }

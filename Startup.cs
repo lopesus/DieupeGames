@@ -50,6 +50,10 @@ namespace DieupeGames
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
             services.AddRazorPages();
             services.AddControllers();
+
+            // Register the Swagger services
+            // Register the Swagger services
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +62,9 @@ namespace DieupeGames
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseOpenApi();
+                app.UseSwaggerUi3();
             }
             else
             {
