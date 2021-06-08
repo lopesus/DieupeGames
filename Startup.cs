@@ -10,7 +10,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DieupeGames.Models;
 using DieupeGames.Models.LiteDb;
+using LabirunServer.Services;
+using LabirunServer.Services.CustomExceptionMiddleware;
+using learnCore;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Routing;
+using MongoDB.Driver;
 
 namespace DieupeGames
 {
@@ -26,9 +31,20 @@ namespace DieupeGames
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
-            services.AddSingleton<ILiteDbContext, LiteDbContext>();
-            services.AddTransient<ILiteDbWordBoxService, LiteDbWordBoxService>();
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection(nameof(AppSettings));
+            services.Configure<AppSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
+            services.AddSingleton<MongoDBContext>();
+
+            var db = new MongoClient(appSettings.MongoServer)
+                .GetDatabase(appSettings.MongoDatabase);
+
+
+            //services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
+            //services.AddSingleton<ILiteDbContext, LiteDbContext>();
+            //services.AddTransient<ILiteDbWordBoxService, LiteDbWordBoxService>();
 
             //services.AddRouting(options => options.LowercaseUrls = true);
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
@@ -49,7 +65,7 @@ namespace DieupeGames
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

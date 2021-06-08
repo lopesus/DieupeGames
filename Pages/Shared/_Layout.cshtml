@@ -27,6 +27,11 @@
                         </li><li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/terms">Terms</a>
                         </li>
+                        <environment include="Development">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="counter" asp-action="Index">counter</a>
+                            </li>
+                        </environment>
                     </ul>
                 </div>
             </div>

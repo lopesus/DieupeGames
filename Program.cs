@@ -6,6 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LabirunModel.Labirun;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace DieupeGames
 {
@@ -13,7 +18,29 @@ namespace DieupeGames
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            BsonClassMap.RegisterClassMap<ServerCounter>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id)
+                    .SetIdGenerator(new StringObjectIdGenerator())
+                    .SetSerializer(new StringSerializer(BsonType.ObjectId));
+
+                cm.SetIgnoreExtraElements(true);
+            });
+
+            BsonClassMap.RegisterClassMap<PromoCode>(cm =>
+                       {
+                           cm.AutoMap();
+                           cm.MapIdMember(c => c.Id)
+                               .SetIdGenerator(new StringObjectIdGenerator())
+                               .SetSerializer(new StringSerializer(BsonType.ObjectId));
+
+                           cm.SetIgnoreExtraElements(true);
+                       });
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
