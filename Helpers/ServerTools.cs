@@ -5,21 +5,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using LabirunModel.Tools;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace LabirunServer.Helpers
 {
     public static class ServerTools
     {
-        public static bool IsEmptyString(this string s)
-        {
-            return String.IsNullOrEmpty(s) || String.IsNullOrWhiteSpace(s);
-        }
-
-        public static bool IsNotEmptyString(this string s)
-        {
-            return !(String.IsNullOrEmpty(s) || String.IsNullOrWhiteSpace(s));
-        }
+       
         public static string ExtractUsername(this string facebookName)
         {
             if (facebookName.IsEmptyString())

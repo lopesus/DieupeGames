@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using LabirunModel.Labirun;
+using LabirunServer.DataProtection;
 using LabirunServer.Services;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -9,14 +10,14 @@ namespace learnCore
 {
     public class MongoDBContext
     {
+        private IMongoCollection<MongoStoredKey> dataProtectionCollection;
 
-
-        //private readonly IMongoCollection<PlayerData> playerCollection;
+        private readonly IMongoCollection<PlayerData> playerCollection;
         //private readonly IMongoCollection<GlobalLeaderBoardEntry> leaderBoardCollection;
         private readonly IMongoCollection<PromoCode> promoCodeCollection;
         private readonly IMongoCollection<ServerCounter> serverCounterCollection;
 
-       // public PlayerDataRepository Players { get; set; }
+        public PlayerDataRepository Players { get; set; }
         //LeaderBoardRepository LeaderBoard { get; set; }
         public PromoCodeRepository PromoCode { get; set; }
         public ServerCounterRepository Counters { get; set; }
@@ -44,10 +45,11 @@ namespace learnCore
 
             //var client = new MongoClient(appSettings.MongoServer);
             var database = client.GetDatabase(appSettings.MongoDatabase);
+            //for data protection key 
+            dataProtectionCollection = database.GetCollection<MongoStoredKey>("DataProtection");
 
 
-
-            // playerCollection = database.GetCollection<PlayerData>("PlayerData");
+             playerCollection = database.GetCollection<PlayerData>("PlayerData");
             //leaderBoardCollection = database.GetCollection<GlobalLeaderBoardEntry>("LeaderBoard");
             promoCodeCollection = database.GetCollection<PromoCode>("PromoCode");
             serverCounterCollection = database.GetCollection<ServerCounter>("ServerCounter");
@@ -76,18 +78,18 @@ namespace learnCore
 
         private void CreatePlayerDataIndex()
         {
-            //var indexModels = new List<CreateIndexModel<PlayerData>>();
-            //var indexOptions = new CreateIndexOptions() { Unique = false, };
-            //var builder = Builders<PlayerData>.IndexKeys;
+            var indexModels = new List<CreateIndexModel<PlayerData>>();
+            var indexOptions = new CreateIndexOptions() { Unique = false, };
+            var builder = Builders<PlayerData>.IndexKeys;
 
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.DeviceId), indexOptions));
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.FaceBookId), indexOptions));
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.KartRidgeId), indexOptions));
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.SteamId), indexOptions));
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.UserName), indexOptions));
-            //indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.Email), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.DeviceId), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.FaceBookId), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.KartRidgeId), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.SteamId), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.UserName), indexOptions));
+            indexModels.Add(new CreateIndexModel<PlayerData>(builder.Ascending(p => p.Email), indexOptions));
 
-            //playerCollection.Indexes.CreateMany(indexModels);
+            playerCollection.Indexes.CreateMany(indexModels);
         }
 
         private void CreateCreatedMazeIndex()
@@ -103,6 +105,10 @@ namespace learnCore
             //promoCmodeCollection.Indexes.CreateMany(indexModels);
         }
 
+        public IMongoCollection<MongoStoredKey> GetProtectionCollection()
+        {
+            return dataProtectionCollection;
+        }
 
 
         //public List<PlayerData> Get() =>

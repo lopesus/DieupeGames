@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DieupeGames.Models.LiteDb;
 
 namespace DieupeGames.Controllers
 {
@@ -12,10 +11,8 @@ namespace DieupeGames.Controllers
     [ApiController]
     public class WordBoxController : ControllerBase
     {
-        private ILiteDbWordBoxService wordBoxService; 
-        public WordBoxController(ILiteDbWordBoxService wordBoxService)
+        public WordBoxController( )
         {
-            this.wordBoxService = wordBoxService;
         }
 
 
