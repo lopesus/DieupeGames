@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace learnCore
+namespace DieupeGames.Data.Mongo
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {

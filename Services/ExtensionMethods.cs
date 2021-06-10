@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LabirunServer.Services
+namespace DieupeGames.Services
 {
     public static class ExtensionMethods
     {

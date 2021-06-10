@@ -1,26 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using LabirunModel;
-using LabirunModel.Config;
+using DieupeGames.Data;
+using DieupeGames.Data.Mongo;
+using DieupeGames.Helpers;
+using DieupeGames.Services;
 using LabirunModel.Labirun;
 using LabirunModel.Labirun.Request;
 using LabirunModel.Labirun.Response;
-using LabirunServer.Helpers;
-using LabirunServer.Services;
-using learnCore;
-using learnCore.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NSwag.Annotations;
 
-namespace LabirunServer.Controllers.Labirun
+namespace DieupeGames.Controllers.PacRun
 {
     [OpenApiIgnore]
    // [Authorize]

@@ -1,13 +1,12 @@
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DieupeGames.Data.Mongo;
+using DieupeGames.Helpers;
+using DieupeGames.Services;
 using LabirunModel.Labirun;
 using LabirunModel.Labirun.Request;
 using LabirunModel.Labirun.Response;
 using LabirunModel.Tools;
-using LabirunServer.Helpers;
-using LabirunServer.Services;
-using learnCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -15,7 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace LabirunServer.Controllers.Labirun
+namespace DieupeGames.Controllers.PacRun
 {
     [Authorize]
     [Route("api/[controller]")]

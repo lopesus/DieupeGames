@@ -3,7 +3,7 @@ using LabirunModel.Labirun;
 using LabirunModel.Labirun.Enums;
 using MongoDB.Driver;
 
-namespace LabirunServer.Helpers
+namespace DieupeGames.Helpers
 {
     public static class MongoDbTools
     {

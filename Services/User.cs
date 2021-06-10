@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Threading.Tasks;
 
-namespace LabirunServer.Services
+namespace DieupeGames.Services
 {
     public class User
     {

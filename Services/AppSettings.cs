@@ -1,4 +1,4 @@
-namespace LabirunServer.Services
+namespace DieupeGames.Services
 {
     public class AppSettings
     {

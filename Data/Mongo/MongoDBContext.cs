@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Threading;
+using DieupeGames.DataProtection;
+using DieupeGames.Services;
 using LabirunModel.Labirun;
-using LabirunServer.DataProtection;
-using LabirunServer.Services;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace learnCore
+namespace DieupeGames.Data.Mongo
 {
     public class MongoDBContext
     {

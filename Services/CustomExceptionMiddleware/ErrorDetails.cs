@@ -1,6 +1,6 @@
-using LabirunServer.Helpers;
+using DieupeGames.Helpers;
 
-namespace LabirunServer.Services.CustomExceptionMiddleware
+namespace DieupeGames.Services.CustomExceptionMiddleware
 {
     public class ErrorDetails
     {

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using learnCore;
+using DieupeGames.Data.Mongo;
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using MongoDB.Driver;
 
-namespace LabirunServer.DataProtection
+namespace DieupeGames.DataProtection
 {
     public sealed class MongoXmlRepository : IXmlRepository
     {

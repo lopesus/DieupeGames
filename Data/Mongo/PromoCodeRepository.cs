@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LabirunModel.Labirun;
 using MongoDB.Driver;
 
-namespace learnCore
+namespace DieupeGames.Data.Mongo
 {
     public class PromoCodeRepository : IGenericRepository<PromoCode>
     {

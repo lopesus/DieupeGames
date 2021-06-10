@@ -8,12 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DieupeGames.Data.Mongo;
+using DieupeGames.DataProtection;
 using DieupeGames.Models;
-using LabirunServer.Controllers.Labirun;
-using LabirunServer.DataProtection;
-using LabirunServer.Services;
-using LabirunServer.Services.CustomExceptionMiddleware;
-using learnCore;
+using DieupeGames.Services;
+using DieupeGames.Services.CustomExceptionMiddleware;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Routing;
@@ -39,10 +38,24 @@ namespace DieupeGames
             var appSettings = appSettingsSection.Get<AppSettings>();
 
             services.AddSingleton<MongoDBContext>();
+
+
             services.AddSingleton<LeaderBoardService>();
 
-            var db = new MongoClient(appSettings.MongoServer)
-                .GetDatabase(appSettings.MongoDatabase);
+
+
+            var url2 = new MongoUrl(appSettings.MongoServer);
+            var clientSettings = MongoClientSettings.FromUrl(url2);
+            clientSettings.SslSettings = new SslSettings();
+            clientSettings.SslSettings.CheckCertificateRevocation = false;
+            clientSettings.UseTls = true;
+            clientSettings.AllowInsecureTls = true;
+
+
+            //var mongoClient = new MongoClient(url);
+            var client = new MongoClient(clientSettings);
+            var db = client.GetDatabase(appSettings.MongoDatabase);
+
 
             services
                 .AddDataProtection()

@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace LabirunServer.DataProtection
+namespace DieupeGames.DataProtection
 {
     public sealed class MongoStoredKey
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using DieupeGames.Data.Mongo;
 using DieupeGames.Helpers;
 using LabirunModel.Labirun;
-using learnCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DieupeGames.Controllers

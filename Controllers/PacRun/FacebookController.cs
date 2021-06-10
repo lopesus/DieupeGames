@@ -1,18 +1,14 @@
-using LabirunServer.Services;
-using learnCore;
-using learnCore.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using DieupeGames.Data.Mongo;
+using DieupeGames.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using NSwag.Annotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
+using NSwag.Annotations;
 
-namespace LabirunServer.Controllers.Labirun
+namespace DieupeGames.Controllers.PacRun
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 
-namespace learnCore
+namespace DieupeGames.Data.Mongo
 {
     public interface IGenericRepository<T> where T : class
     {

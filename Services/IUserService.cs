@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LabirunServer.Services
+namespace DieupeGames.Services
 {
     public interface IUserService
     {

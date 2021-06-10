@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using learnCore;
+using DieupeGames.Data.Mongo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DieupeGames.Controllers

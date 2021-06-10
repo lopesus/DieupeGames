@@ -3,7 +3,7 @@ using LabirunModel.Labirun;
 using LabirunModel.Labirun.Request;
 using LabirunModel.Labirun.Response;
 
-namespace LabirunServer.Services
+namespace DieupeGames.Services
 {
     public class LeaderBoardService
     {

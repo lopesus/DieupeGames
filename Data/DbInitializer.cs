@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text.Json;
+using DieupeGames.Data.Mongo;
 using LabirunModel.Labirun;
-using LabirunModel.Labirun.Enums;
 
-namespace learnCore.Models
+namespace DieupeGames.Data
 {
     public static class DbInitializer
     {

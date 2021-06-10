@@ -1,13 +1,10 @@
-using System;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
+using DieupeGames.Data.Mongo;
 using LabirunModel.Labirun;
-using LabirunModel.Tools;
-using learnCore;
 
-namespace LabirunServer.Helpers
+namespace DieupeGames.Helpers
 {
     public static class JwtTools
     {
